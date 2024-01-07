@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import React from "react";
+import { generateCarImageUrl } from "@/utils";
 
 interface CardDetailsProps {
   isOpen: boolean;
@@ -61,7 +62,7 @@ const CardDetails = ({ isOpen, closeModal, car }: CardDetailsProps) => {
                     {/* bg-pattern allows us to select bg from public folders */}
                     <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
                       <Image
-                        src="/hero.png"
+                        src={generateCarImageUrl(car, "angle")}
                         alt="car model"
                         fill
                         priority
@@ -71,7 +72,7 @@ const CardDetails = ({ isOpen, closeModal, car }: CardDetailsProps) => {
                     <div className="flex gap-3">
                       <div className="flex-1 relative w-full h-24 bg-primary-blue-100">
                         <Image
-                          src="/hero.png"
+                          src={generateCarImageUrl(car, "29")}
                           alt="car model"
                           fill
                           priority
@@ -80,7 +81,7 @@ const CardDetails = ({ isOpen, closeModal, car }: CardDetailsProps) => {
                       </div>
                       <div className="flex-1 relative w-full h-24 bg-primary-blue-100">
                         <Image
-                          src="/hero.png"
+                          src={generateCarImageUrl(car, "33")}
                           alt="car model"
                           fill
                           priority
@@ -89,7 +90,7 @@ const CardDetails = ({ isOpen, closeModal, car }: CardDetailsProps) => {
                       </div>
                       <div className="flex-1 relative w-full h-24 bg-primary-blue-100">
                         <Image
-                          src="/hero.png"
+                          src={generateCarImageUrl(car, "13")}
                           alt="car model"
                           fill
                           priority
@@ -104,6 +105,7 @@ const CardDetails = ({ isOpen, closeModal, car }: CardDetailsProps) => {
                       {car.make} {car.model}
                     </h2>
                     <div className="mt-3 flex flex-wrap gap-4">
+                      {/* Using object .entries() */}
                       {Object.entries(car).map(([key, value]) => (
                         <div
                           className="flex justify-between gap-5 w-full text-right "

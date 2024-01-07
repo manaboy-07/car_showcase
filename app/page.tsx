@@ -6,6 +6,8 @@ import { fetchCars } from "@/utils";
 import Image from "next/image";
 
 export default async function Home() {
+  //this is where we are fetching cars
+  //to fetch each car automatically, we need to fetch the params that were pushed thanks to the searh bar
   const allCars = await fetchCars();
   console.log(allCars);
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
