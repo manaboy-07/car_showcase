@@ -4,10 +4,21 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Listbox, Transition } from "@headlessui/react";
 import { CustomFilterProps } from "@/types";
+import { Router } from "next/router";
+import { updateSearchParams } from "@/utils";
 
 function Customfilter({ title, options }: CustomFilterProps) {
   const [selected, setSelected] = useState(options[0]);
 
+  const router = useRouter();
+  //now update the params SSR
+  const handleUpdatedParams = (e: { title: string; value: string }) => {
+    const newPathname = updateSearchParams(title, e.value.toLowerCase());
+
+    router.push(newPathname); //tigger ssr
+
+    //get the current path
+  };
   return (
     <div className="w-fi">
       <Listbox value={selected} onChange={(e) => setSelected(e)}>
