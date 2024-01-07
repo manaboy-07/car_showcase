@@ -5,6 +5,9 @@ export interface CustomButtonProps {
   btnType?: "button" | "submit";
   containerStyles?: string;
   handleClick?: MouseEventHandler<HTMLButtonElement>;
+  textStyles?: string;
+  rightIcon?: string;
+  isDisabled?: boolean;
 }
 
 export interface SearchManufaturerProps {
@@ -12,6 +15,9 @@ export interface SearchManufaturerProps {
   setManufacturer: (manufacturer: string) => void;
 }
 
+export interface HomeProps {
+  searchParams: FilterProps;
+}
 export interface CarProps {
   //check out api docs
   city_mpg: number;
@@ -26,4 +32,20 @@ export interface CarProps {
   model: string;
   transmission: string;
   year: number;
+}
+export interface FilterProps {
+  manufacturer: string;
+  year: string | number;
+  fuel: string;
+  limit: string | number;
+  model: string;
+}
+
+export interface OptionProps {
+  title: string;
+  value: string;
+}
+export interface CustomFilterProps {
+  title: string;
+  options: OptionProps[]; //it will have an array of title and value pairs
 }
