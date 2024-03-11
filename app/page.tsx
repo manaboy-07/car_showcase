@@ -3,13 +3,15 @@ import Customfilter from "@/components/Customfilter";
 import Hero from "@/components/Hero";
 import SearchBar from "@/components/SearchBar";
 import { fetchCars } from "@/utils";
-import { fuels, yearsOfProduction } from "@/constants";
-import Image from "next/image";
 import { HomeProps } from "@/types";
+import Image from "next/image";
+import { fuels, yearsOfProduction } from "@/constants";
+import { ShowMore } from "@/components/ShowMore";
 
 export default async function Home({ searchParams }: HomeProps) {
   //this is where we are fetching cars
   //to fetch each car automatically, we need to fetch the params that were pushed thanks to the searh bar
+  //server-sde rendering
   const allCars = await fetchCars({
     manufacturer: searchParams.manufacturer || "",
     year: searchParams.year || 2022,
@@ -35,6 +37,7 @@ export default async function Home({ searchParams }: HomeProps) {
           <SearchBar />
           <div className="home__filter-container">
             <Customfilter title="fuel" options={fuels} />
+
             <Customfilter title="year" options={yearsOfProduction} />
           </div>
         </div>
@@ -46,6 +49,11 @@ export default async function Home({ searchParams }: HomeProps) {
                 <CarCard car={car} />
               ))}
             </div>
+            {/* We want to show more cars on the click of a button, Showmore component accepts props,  */}
+            <ShowMore
+              pageNumber={(searchParams.limit || 10) / 10}
+              isNext={(searchParams.limit || 10) > allCars.length}
+            />
           </section>
         ) : (
           <div className="home__error-container">

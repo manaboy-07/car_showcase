@@ -1,34 +1,13 @@
 import { CarProps, FilterProps } from "@/types";
+import { url } from "inspector";
 
-// export async function fetchCars(filters: FilterProps) {
-//   const { manufacturer, year, model, limit, fuel } = filters;
-
-//   // Set the required headers for the API request
-//   const headers: HeadersInit = {
-//     "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY || "",
-//     "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
-//   };
-
-//   // Set the required headers for the API request
-//   const response = await fetch(
-//     `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
-//     {
-//       headers: headers,
-//     }
-//   );
-
-//   // Parse the response as JSON
-//   const result = await response.json();
-
-//   return result;
-//}
 export async function fetchCars(filters: FilterProps) {
   const { manufacturer, year, model, limit, fuel } = filters;
   const headers = {
     "X-RapidAPI-Key": "87169f1224msh8562716f5943164p104b6ajsn2f58d3620d10",
     "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
   };
-  const url = "https://cars-by-api-ninjas.p.rapidapi.com/v1/cars";
+
   const response = await fetch(
     `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
     {
@@ -54,18 +33,7 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 
   return rentalRatePerDay.toFixed(0);
 };
-export const updateSearchParams = (type: string, value: string) => {
-  // Get the current URL search params
-  const searchParams = new URLSearchParams(window.location.search);
 
-  // Set the specified search parameter to the given value
-  searchParams.set(type, value);
-
-  // Set the specified search parameter to the given value
-  const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
-
-  return newPathname;
-};
 //Generate a car image
 
 export const generateCarImageUrl = (car: CarProps, angle?: string) => {
@@ -81,4 +49,14 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
   url.searchParams.append("angle", `${angle}`);
 
   return `${url}`;
+};
+
+export const updateSearchParams = (type: string, value: string) => {
+  const searchParams = new URLSearchParams(window.location.search);
+
+  searchParams.set(type, value);
+
+  const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
+
+  return newPathname;
 };

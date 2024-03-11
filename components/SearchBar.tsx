@@ -37,14 +37,15 @@ function SearchBar() {
     //this will put the data in the search params
     //then in order to fetch and perform re-render to fetch the cars
     //thiose parameters that were just pushed i will need to get them again and make
-    // an automatic request to the api
+    // an automatic request to the api  Go to page.tsx
+
     const searchParams = new URLSearchParams(window.location.search);
     if (model) {
       searchParams.set("model", model);
     } else {
       searchParams.delete("model");
     }
-    if (model) {
+    if (manufacturer) {
       searchParams.set("manufacturer", manufacturer);
     } else {
       searchParams.delete("manufacturer");

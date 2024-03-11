@@ -7,7 +7,7 @@ export const CustomButton = ({
   btnType,
   textStyles,
   rightIcon,
-
+  isDisabled,
   handleClick,
 }: CustomButtonProps) => {
   return (

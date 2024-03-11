@@ -21,7 +21,13 @@ function Customfilter({ title, options }: CustomFilterProps) {
   };
   return (
     <div className="w-fi">
-      <Listbox value={selected} onChange={(e) => setSelected(e)}>
+      <Listbox
+        value={selected}
+        onChange={(e) => {
+          setSelected(e);
+          handleUpdatedParams(e);
+        }}
+      >
         <div className="relative z-10 w-fit">
           <Listbox.Button className="custom-filter__btn">
             <span className="block truncate">{selected.title}</span>
